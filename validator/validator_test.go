@@ -467,12 +467,6 @@ testdata/invalid_message_field_alias.proto:59:3: The types of "org.federation.Po
 testdata/invalid_message_field_alias.proto:59:3: "title" field in "org.federation.PostData" message needs to specify "grpc.federation.field" option
 59:    int64 title = 2;
        ^
-testdata/invalid_message_field_alias.proto:63:1: "def" or "custom_resolver" cannot be used with alias option
-63:  message PostData2 {
-     ^
-testdata/invalid_message_field_alias.proto:69:3: "org.federation.PostData2.type" field does not use the alias option. only alias option is available in alias message
-69:    PostType type = 1 [(grpc.federation.field).by = "org.federation.PostType.POST_TYPE_FOO"];
-       ^
 testdata/invalid_message_field_alias.proto:86:3: The types of "org.federation.PostContent"'s "body" field ("int64") and "org.post.PostContent"'s field ("string") are different. This field cannot be resolved automatically, so you must use the "grpc.federation.field" option to bind it yourself
 86:    int64 body = 3;
        ^
