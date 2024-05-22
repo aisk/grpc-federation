@@ -140,7 +140,7 @@ message Message {
 message MessageRule {
   string message_argument_id = 1;
   bool custom_resolver = 2;
-  string alias_id = 3;
+  repeated string alias_ids = 3;
   VariableDefinitionSet def_set = 4;
 }
 
@@ -573,7 +573,7 @@ message EnumValue {
 }
 
 message EnumRule {
-  string alias_id = 1;
+  repeated string alias_ids = 1;
 }
 
 message EnumValueRule {

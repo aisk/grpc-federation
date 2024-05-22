@@ -69,8 +69,14 @@ func (r *MessageRule) ProtoFormat(opt *ProtoFormatOption) string {
 	if r.CustomResolver {
 		elems = append(elems, nextOpt.indentFormat()+"custom_resolver: true")
 	}
-	if r.Alias != nil {
-		elems = append(elems, nextOpt.indentFormat()+fmt.Sprintf("alias: %q", r.Alias.FQDN()))
+	var aliases []string
+	for _, alias := range r.Aliases {
+		aliases = append(aliases, fmt.Sprintf("%q", alias.FQDN()))
+	}
+	if len(aliases) == 1 {
+		elems = append(elems, nextOpt.indentFormat()+fmt.Sprintf("alias: %s", aliases[0]))
+	} else if len(aliases) > 1 {
+		elems = append(elems, nextOpt.indentFormat()+fmt.Sprintf("alias: [%s]", strings.Join(aliases, ", ")))
 	}
 	if len(elems) == 0 {
 		return indent + "option (grpc.federation.message) = {}"

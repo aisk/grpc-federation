@@ -482,9 +482,9 @@ func (b *EnumBuilder) AddValueWithAlias(value string, alias ...*resolver.EnumVal
 	return b
 }
 
-func (b *EnumBuilder) WithAlias(alias *resolver.Enum) *EnumBuilder {
+func (b *EnumBuilder) WithAlias(aliases ...*resolver.Enum) *EnumBuilder {
 	b.enum.Rule = &resolver.EnumRule{
-		Alias: alias,
+		Aliases: aliases,
 	}
 	return b
 }
@@ -553,8 +553,8 @@ func (b *MessageRuleBuilder) SetCustomResolver(v bool) *MessageRuleBuilder {
 	return b
 }
 
-func (b *MessageRuleBuilder) SetAlias(alias *resolver.Message) *MessageRuleBuilder {
-	b.rule.Alias = alias
+func (b *MessageRuleBuilder) SetAlias(aliases ...*resolver.Message) *MessageRuleBuilder {
+	b.rule.Aliases = aliases
 	return b
 }
 

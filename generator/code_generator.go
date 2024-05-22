@@ -1661,11 +1661,11 @@ type CastEnumValue struct {
 
 func (f *CastField) ToEnum() *CastEnum {
 	toEnum := f.toType.Enum
-	if toEnum.Rule != nil && toEnum.Rule.Alias != nil {
+	if toEnum.Rule != nil && len(toEnum.Rule.Aliases) != 0 {
 		return f.toEnumByAlias(toEnum)
 	}
 	fromEnum := f.fromType.Enum
-	if fromEnum.Rule != nil && fromEnum.Rule.Alias != nil {
+	if fromEnum.Rule != nil && len(fromEnum.Rule.Aliases) != 0 {
 		// the type conversion is performed at the time of gRPC method call.
 		return f.toEnumByAlias(fromEnum)
 	}

@@ -101,7 +101,7 @@ type Enum struct {
 }
 
 type EnumRule struct {
-	Alias *Enum
+	Aliases []*Enum
 }
 
 type EnumValue struct {
@@ -118,7 +118,7 @@ type EnumValueRule struct {
 type MessageRule struct {
 	MessageArgument *Message
 	CustomResolver  bool
-	Alias           *Message
+	Aliases         []*Message
 	DefSet          *VariableDefinitionSet
 }
 

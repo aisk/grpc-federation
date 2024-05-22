@@ -230,8 +230,12 @@ func (e *encoder) toMessageRule(rule *resolver.MessageRule) *plugin.MessageRule 
 	ret := &plugin.MessageRule{
 		CustomResolver: rule.CustomResolver,
 	}
+	var aliasIDs []string
+	for _, msg := range e.toMessages(rule.Aliases) {
+		aliasIDs = append(aliasIDs, msg.GetId())
+	}
 	ret.MessageArgumentId = e.toMessage(rule.MessageArgument).GetId()
-	ret.AliasId = e.toMessage(rule.Alias).GetId()
+	ret.AliasIds = aliasIDs
 	ret.DefSet = e.toVariableDefinitionSet(rule.DefSet)
 	return ret
 }
@@ -284,8 +288,12 @@ func (e *encoder) toEnumRule(rule *resolver.EnumRule) *plugin.EnumRule {
 	if rule == nil {
 		return nil
 	}
+	var aliasIDs []string
+	for _, alias := range rule.Aliases {
+		aliasIDs = append(aliasIDs, e.toEnumID(alias))
+	}
 	return &plugin.EnumRule{
-		AliasId: e.toEnumID(rule.Alias),
+		AliasIds: aliasIDs,
 	}
 }
 

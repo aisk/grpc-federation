@@ -643,7 +643,7 @@ func (d *decoder) toMessageRule(rule *plugin.MessageRule) (*resolver.MessageRule
 	if err != nil {
 		return nil, err
 	}
-	alias, err := d.toMessage(rule.GetAliasId())
+	aliases, err := d.toMessages(rule.GetAliasIds())
 	if err != nil {
 		return nil, err
 	}
@@ -654,7 +654,7 @@ func (d *decoder) toMessageRule(rule *plugin.MessageRule) (*resolver.MessageRule
 	return &resolver.MessageRule{
 		CustomResolver:  rule.GetCustomResolver(),
 		MessageArgument: msgArg,
-		Alias:           alias,
+		Aliases:         aliases,
 		DefSet:          defSet,
 	}, nil
 }
@@ -1496,12 +1496,12 @@ func (d *decoder) toEnumRule(rule *plugin.EnumRule) (*resolver.EnumRule, error) 
 	if rule == nil {
 		return nil, nil
 	}
-	alias, err := d.toEnum(rule.GetAliasId())
+	aliases, err := d.toEnums(rule.GetAliasIds())
 	if err != nil {
 		return nil, err
 	}
 	return &resolver.EnumRule{
-		Alias: alias,
+		Aliases: aliases,
 	}, nil
 }
 
